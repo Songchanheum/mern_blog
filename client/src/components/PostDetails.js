@@ -7,8 +7,9 @@ import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import EditPostForm from './EditPostForm';
 import Loader from './Loader';
-import { Flex, Box, Image, chakra, Spacer, Link, Button, Heading, Text } from '@chakra-ui/react';
+import { Flex, Box, Image, chakra, Spacer, Link, Button, Heading, Text, Textarea } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
+import ResizeTextarea from "react-textarea-autosize";
 
 const PostDetails = () => {
   const { id } = useParams();
@@ -117,9 +118,9 @@ const PostDetails = () => {
                       Photo by Lopez Robin on Unsplash
                     </figcaption>
                   </figure>
-                  <Text mt={4} fontSize="lg" color={('gray.400', 'gray.300')}>
-                    {currentPost?.content}
-                  </Text>
+                  <Textarea mt={4} fontSize="lg" color={('gray.400', 'gray.300')} isReadOnly='true' variant='unstyled' resize={'none'} overflow="hidden" as={ResizeTextarea}>
+                    {currentPost?.content.replace()}
+                  </Textarea>
                 </Box>
               </Box>
             </Flex>

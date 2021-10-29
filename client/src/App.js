@@ -20,8 +20,10 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/dashboard" component={Home} />
           <Route exact path="/posts" component={PostsList} />
-          <Route exact path="/posts/:id" component={PostDetails} />
+          <Route exact path="/posts/:category" component={PostsList} />
+          <Route exact path="/posts/:category/:id" component={PostDetails} />
           <Redirect to="/" />
         </Switch>
       </Router>

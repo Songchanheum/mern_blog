@@ -1,10 +1,13 @@
 import { Divider, Flex, IconButton } from '@chakra-ui/react'
-import {FiMenu, FiHome, FiUser, FiDollarSign, FiSettings} from 'react-icons/fi';
+import {FiMenu, FiHome, FiBook, FiChevronsRight, FiSettings} from 'react-icons/fi';
 import React, {useState} from 'react'
 import NavItem from './NavItem';
+import { useSelector } from 'react-redux';
 
 function Sidebar() {
     const [navSize, changeNavSize] = useState("large")
+    
+    const categories = useSelector(state => state.category);
     return (
         <Flex
             pos="sticky"
@@ -26,7 +29,7 @@ function Sidebar() {
                     mt={5}
                     _hover={{bg:'none'}}
                     icon={<FiMenu />}
-                    onClick={() =>{
+                    onClick={() => {
                         if(navSize == "small"){
                             changeNavSize("large");
                         }else{
@@ -34,10 +37,10 @@ function Sidebar() {
                         }
                     }}
                 ></IconButton>
-                <NavItem navSize={navSize} icon={FiHome} title="Dashboard" description="Dashboard Info" active />
-                <NavItem navSize={navSize} icon={FiUser} title="User" description="User Info" />
-                <NavItem navSize={navSize} icon={FiDollarSign} title="Dollar" description="Dashboard Info" />
-                <NavItem navSize={navSize} icon={FiSettings} title="Setting" description="Dashboard Info" />
+                <NavItem navSize={navSize} icon={FiHome} title="대시보드" path="dashboard"/>
+                <NavItem navSize={navSize} icon={FiBook} title="전체보기" path="posts"/>
+                <NavItem navSize={navSize} icon={FiChevronsRight} title="카테고리별" description={categories.category}/>
+                <NavItem navSize={navSize} icon={FiSettings} title="setting" path="setting"/>
             </Flex>
         </Flex>
     )

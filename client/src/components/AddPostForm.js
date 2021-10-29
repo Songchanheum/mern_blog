@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import FileBase64 from 'react-file-base64';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useForm, Controller } from 'react-hook-form';
 import {
@@ -20,9 +20,9 @@ import { FormControl, FormLabel } from '@chakra-ui/form-control';
 
 import { createPost } from '../redux/actions/post';
 
-const categories = ['Frontend', 'Backend', 'Mobile', 'React', 'Vue', 'JavaScript', 'Fun', 'Gaming'];
-
 const AddPostForm = ({ isOpen, onClose }) => {
+  
+  const categories = useSelector(state => state.category);
   const [file, setFile] = useState(null);
 
   const { register, errors, control, handleSubmit } = useForm();
@@ -105,7 +105,7 @@ const AddPostForm = ({ isOpen, onClose }) => {
               <Controller
                 as={
                   <Select placeholder="Choose Category">
-                    {categories.map((category, i) => (
+                    {categories.category.map((category, i) => (
                       <option key={i} value={category}>
                         {category}
                       </option>
@@ -114,7 +114,7 @@ const AddPostForm = ({ isOpen, onClose }) => {
                 }
                 name="tag"
                 control={control}
-                defaultValue={categories[0]}
+                defaultValue={categories.category[0]}
               />
             </FormControl>
             <FormControl isInvalid={errors.content} minH={'100px'}>

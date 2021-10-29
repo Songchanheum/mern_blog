@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import FileBase64 from 'react-file-base64';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useForm, Controller } from 'react-hook-form';
 import { updatePost } from '../redux/actions/post';
@@ -9,9 +9,10 @@ import { FormControl, FormLabel } from '@chakra-ui/form-control';
 import { Button } from '@chakra-ui/button';
 import { Input } from '@chakra-ui/input';
 
-const categories = ['Frontend', 'Backend', 'Mobile', 'React', 'Vue', 'JavaScript', 'Fun', 'Gaming'];
 
 const EditPostForm = ({ post, closeEditMode }) => {
+  
+  const categories = useSelector(state => state.category);
   const [file, setFile] = useState(post?.image);
   const { register, errors, control, handleSubmit } = useForm();
   const dispatch = useDispatch();
@@ -95,7 +96,7 @@ const EditPostForm = ({ post, closeEditMode }) => {
               <Controller
                 as={
                   <Select placeholder="Choose Category">
-                    {categories.map((category, i) => (
+                    {categories.category.map((category, i) => (
                       <option key={i} value={category}>
                         {category}
                       </option>

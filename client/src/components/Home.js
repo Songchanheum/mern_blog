@@ -63,7 +63,7 @@ export default function CallToActionWithAnnotation() {
               </Text>
             </Box>
           </Stack>
-        </Stack>
+        </Stack> 
       </Container>
     </>
   );

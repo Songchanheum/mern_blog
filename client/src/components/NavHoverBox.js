@@ -1,4 +1,4 @@
-import { Flex, Heading, Icon, Text } from '@chakra-ui/react'
+import { Flex, Heading, Icon, Link, Text } from '@chakra-ui/react'
 import React from 'react'
 
 function NavHoverBox({icon, title, description}) {
@@ -26,9 +26,20 @@ function NavHoverBox({icon, title, description}) {
             color="#fff"
             textAlign="center"
         >
-            <Icon as={icon} fontSize="3xl" mb={4} />
+            {/* <Icon as={icon} fontSize="3xl" mb={4} />
             <Heading size="md" fontWeight="normal">{title}</Heading>
-            <Text>{description}</Text>
+            <Text>{description}</Text> */}
+            {
+                description.map(item => {
+                    return (
+                        <Link
+                            href={'/posts/'+item}
+                        >
+                            <Text>{item}</Text>
+                        </Link>
+                    )
+                })
+            }
         </Flex>
        </>
     )
