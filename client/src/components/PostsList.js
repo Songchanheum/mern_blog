@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Post from './Post';
 import { fetchPosts } from '../redux/actions/post';
 import Loader from './Loader';
-import { useColorModeValue, Box, Wrap, Flex, Text, Icon } from '@chakra-ui/react';
+import { useColorModeValue, Box, Wrap, Flex, Text, Icon, Stack } from '@chakra-ui/react';
 import { useParams } from 'react-router';
 import {FiBook} from 'react-icons/fi';
 
@@ -20,11 +20,11 @@ const PostsList = () => {
 
   return (
     <>
-    <Flex bg={useColorModeValue('#F9FAFB', 'gray.600')}  >
-      <Text pl={20} pt={10} fontSize="2xl" bgGradient="linear(to-r, blue.200 0%, blue.200 50%, gray.200 100%)" bgClip="text" fontWeight={600}>
-        <Icon as={FiBook} color="blue.200" />  {category != null ?category: 'ALL'}
+    <Stack bg={useColorModeValue('#F9FAFB', 'gray.600')} textAlign={'center'} >
+      <Text pt={10} fontSize="4xl" bgGradient="linear(to-r, blue.300 0%, blue.200 50%, gray.100 100%)" bgClip="text" fontWeight={600}>
+        <Icon as={FiBook} color="blue.300" />  {category != null ?category: 'ALL'}
       </Text>
-    </Flex>
+    </Stack>
     <Flex
       bg={useColorModeValue('#F9FAFB', 'gray.600')}
       px={5}
