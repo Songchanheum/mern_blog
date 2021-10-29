@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Post from './Post';
-import { fetchPosts } from '../redux/actions/post';
+import { fetchPosts} from '../redux/actions/post';
 import Loader from './Loader';
 import { useColorModeValue, Box, Wrap, Flex, Text, Icon, Stack } from '@chakra-ui/react';
 import { useParams } from 'react-router';
@@ -38,8 +38,9 @@ const PostsList = () => {
         {error && <p>{error}</p>}
         {loading ? (
           <Loader />
-        ) : posts?.length > 0 ? (
+        ) : posts?.length > 0 && (category == null || posts.findIndex((item) => item.tag == category) > -1) ? (
           posts?.map(post => (
+            (category == null || post.tag == category) ? (
             <Box
               mx="auto"
               rounded="lg"
@@ -49,8 +50,9 @@ const PostsList = () => {
               key={post?._id}
               boxShadow="dark-lg"
             >
-              <Post post={post}/>
+              <Post post={post} category={category}/>
             </Box>
+            ) :  (<></>)
           ))
         ) : (
           'Blog not found!'

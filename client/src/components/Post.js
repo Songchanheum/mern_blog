@@ -3,7 +3,7 @@ import moment from 'moment';
 import 'moment/locale/en-gb';
 import { Image, chakra, useColorModeValue, Link, Box, Flex, Spacer } from '@chakra-ui/react';
 
-const Post = ({ post }) => {
+const Post = ({ post, category }) => {
   const convertRelativeTime = date => {
     return moment(date).fromNow();
   };
@@ -36,7 +36,7 @@ const Post = ({ post }) => {
             fontWeight="bold"
             fontSize="2xl"
             _hover={{ color: 'gray.500', textDecor: 'underline' }}
-            href={`posts/${post.tag}/${post._id}`}
+            href={category != null ? `${post.tag}/${post._id}` : `posts/${post.tag}/${post._id}`}
           >
             {post.title}
           </Link>

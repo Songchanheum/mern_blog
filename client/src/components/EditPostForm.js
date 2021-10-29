@@ -87,6 +87,7 @@ const EditPostForm = ({ post, closeEditMode }) => {
                     message: 'This field is required.',
                   },
                 })}
+                defaultValue={post?.author}
               />
               {errors.author && <p className="validation__error">{errors.author.message}</p>}
             </FormControl>
