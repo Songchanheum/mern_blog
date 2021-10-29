@@ -1,5 +1,5 @@
 import React from 'react';
-import { chakra, useColorModeValue, Flex, Button, Link } from '@chakra-ui/react';
+import { chakra, useColorModeValue, Flex, Button, Link, Text, Stack, HStack } from '@chakra-ui/react';
 import Logo from '../images/Logo';
 import AddPostForm from './AddPostForm';
 import { useDisclosure } from '@chakra-ui/hooks';
@@ -15,11 +15,25 @@ const Header = () => {
         <Flex align="center" justify="space-between" mx="auto" maxW="1420px">
           <Flex>
             <chakra.a href={'/'} title="Choc Home Page" display="flex" alignItems="center">
-              <Logo />
+              <HStack>
+                <Text fontSize="3xl">
+                  ⚾
+                </Text>
+              <Text 
+                m={2} 
+                bgGradient="linear(to-r, blue.300 0%, blue.200 50%, gray.100 100%)" 
+                bgClip="text" 
+                fontWeight={700} 
+                fontSize={"4xl"}
+                fontFamily={"Gamja Flower"}
+              >
+              SCH BLOG
+              </Text>
+              </HStack>
             </chakra.a>
           </Flex>
           <Flex align="center">
-            <Link
+            {/* <Link
               display="block"
               color={useColorModeValue('gray.800', 'white')}
               fontWeight="bold"
@@ -34,7 +48,7 @@ const Header = () => {
               }}
             >
               Posts
-            </Link>
+            </Link> */}
             <Button ml="10" colorScheme="teal" size="sm" onClick={onOpen}>
               New Post
             </Button>
