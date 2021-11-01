@@ -4,7 +4,10 @@ const initialState = {
 
 const category = (state = initialState, action) => {
   return {
-    category:['Frontend', 'Backend',  'React', 'Vue', 'JavaScript', 'ETC']
+    category:{
+      post:['Frontend', 'Backend',  'React', 'Vue', 'JavaScript', 'ETC'],
+      baseball:['Play','Repair']
+    }
   }
 };
 

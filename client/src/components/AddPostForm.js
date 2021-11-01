@@ -105,7 +105,7 @@ const AddPostForm = ({ isOpen, onClose }) => {
               <Controller
                 as={
                   <Select placeholder="Choose Category">
-                    {categories.category.map((category, i) => (
+                    {categories.category.post.map((category, i) => (
                       <option key={i} value={category}>
                         {category}
                       </option>
@@ -114,7 +114,7 @@ const AddPostForm = ({ isOpen, onClose }) => {
                 }
                 name="tag"
                 control={control}
-                defaultValue={categories.category[0]}
+                defaultValue={categories.category.post[0]}
               />
             </FormControl>
             <FormControl isInvalid={errors.content} minH={'100px'}>

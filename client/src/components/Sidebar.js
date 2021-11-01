@@ -40,7 +40,7 @@ function Sidebar() {
                 ></IconButton>
                 <NavItem navSize={navSize} icon={FiHome} title="대시보드" path="dashboard"/>
                 <NavItem navSize={navSize} icon={FiBook} title="전체보기" path="posts"/>
-                <NavItem navSize={navSize} icon={FiChevronsRight} title="카테고리별" description={categories.category}/>
+                <NavItem navSize={navSize} icon={FiChevronsRight} title="카테고리별" description={categories.category.post}/>
                 <NavItem navSize={navSize} icon={BiBaseball} title="야구" path="baseball" />
                 <NavItem navSize={navSize} icon={FiSettings} title="설정" path="setting"/>
             </Flex>

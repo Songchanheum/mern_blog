@@ -97,7 +97,7 @@ const EditPostForm = ({ post, closeEditMode }) => {
               <Controller
                 as={
                   <Select placeholder="Choose Category">
-                    {categories.category.map((category, i) => (
+                    {categories.category.post.map((category, i) => (
                       <option key={i} value={category}>
                         {category}
                       </option>
