@@ -4,32 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchSinglePost, deletePost } from '../../redux/actions/post';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import EditPostForm from '../../components/EditPostForm';
+import EditPostForm from '../../components/form/EditPostForm';
 import Loader from '../common/Loader';
-import {
-  Flex,
-  Box,
-  Image,
-  chakra,
-  Spacer,
-  Link,
-  Button,
-  Heading,
-  Textarea,
-  useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  ModalFooter,
-} from '@chakra-ui/react';
+import { Flex, Box, Image, chakra, Spacer, Link, Button, Heading, Textarea, useDisclosure } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import ResizeTextarea from 'react-textarea-autosize';
 
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import ReactMarkdown from 'react-markdown';
+import ConfirmModal from '../../components/modal/ConfirmModal';
 
 const PostDetails = ({ match }) => {
   const { id } = match.params;
@@ -158,23 +141,13 @@ const PostDetails = ({ match }) => {
           )}
         </div>
       )}
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>게시글 삭제</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>게시글을 삭제하시겠습니까?</ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              취소
-            </Button>
-            <Button variant="ghost" onClick={removePost}>
-              삭제
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      <ConfirmModal
+        isOpen={isOpen}
+        onClose={onClose}
+        title={'게시글 삭제'}
+        subTitle={'게시글을 삭제하시겠습니까?'}
+        onClickFunction={removePost}
+      />
     </>
   );
 };

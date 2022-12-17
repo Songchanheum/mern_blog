@@ -1,6 +1,6 @@
 import React from 'react';
 import { chakra, useColorModeValue, Flex, Button, Link, Text, Stack, HStack } from '@chakra-ui/react';
-import AddPostForm from '../../components/AddPostForm';
+import AddPostForm from '../../components/form/AddPostForm';
 import { useDisclosure } from '@chakra-ui/hooks';
 
 const Header = () => {
