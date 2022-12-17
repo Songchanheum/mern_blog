@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/blog_temp/static/css/main.08e4ee04.chunk.css",
-    "main.js": "/blog_temp/static/js/main.1e2bfcc4.chunk.js",
-    "main.js.map": "/blog_temp/static/js/main.1e2bfcc4.chunk.js.map",
-    "runtime-main.js": "/blog_temp/static/js/runtime-main.377885d0.js",
-    "runtime-main.js.map": "/blog_temp/static/js/runtime-main.377885d0.js.map",
-    "static/css/2.b28305bc.chunk.css": "/blog_temp/static/css/2.b28305bc.chunk.css",
-    "static/js/2.8c84574c.chunk.js": "/blog_temp/static/js/2.8c84574c.chunk.js",
-    "static/js/2.8c84574c.chunk.js.map": "/blog_temp/static/js/2.8c84574c.chunk.js.map",
-    "index.html": "/blog_temp/index.html",
-    "static/css/2.b28305bc.chunk.css.map": "/blog_temp/static/css/2.b28305bc.chunk.css.map",
-    "static/css/main.08e4ee04.chunk.css.map": "/blog_temp/static/css/main.08e4ee04.chunk.css.map",
-    "static/js/2.8c84574c.chunk.js.LICENSE.txt": "/blog_temp/static/js/2.8c84574c.chunk.js.LICENSE.txt",
-    "static/media/Loading.709feba7.gif": "/blog_temp/static/media/Loading.709feba7.gif"
+    "main.css": "/mern_blog/static/css/main.08e4ee04.chunk.css",
+    "main.js": "/mern_blog/static/js/main.06202808.chunk.js",
+    "main.js.map": "/mern_blog/static/js/main.06202808.chunk.js.map",
+    "runtime-main.js": "/mern_blog/static/js/runtime-main.0ccf179a.js",
+    "runtime-main.js.map": "/mern_blog/static/js/runtime-main.0ccf179a.js.map",
+    "static/css/2.b28305bc.chunk.css": "/mern_blog/static/css/2.b28305bc.chunk.css",
+    "static/js/2.8c84574c.chunk.js": "/mern_blog/static/js/2.8c84574c.chunk.js",
+    "static/js/2.8c84574c.chunk.js.map": "/mern_blog/static/js/2.8c84574c.chunk.js.map",
+    "index.html": "/mern_blog/index.html",
+    "static/css/2.b28305bc.chunk.css.map": "/mern_blog/static/css/2.b28305bc.chunk.css.map",
+    "static/css/main.08e4ee04.chunk.css.map": "/mern_blog/static/css/main.08e4ee04.chunk.css.map",
+    "static/js/2.8c84574c.chunk.js.LICENSE.txt": "/mern_blog/static/js/2.8c84574c.chunk.js.LICENSE.txt",
+    "static/media/Loading.709feba7.gif": "/mern_blog/static/media/Loading.709feba7.gif"
   },
   "entrypoints": [
-    "static/js/runtime-main.377885d0.js",
+    "static/js/runtime-main.0ccf179a.js",
     "static/css/2.b28305bc.chunk.css",
     "static/js/2.8c84574c.chunk.js",
     "static/css/main.08e4ee04.chunk.css",
-    "static/js/main.1e2bfcc4.chunk.js"
+    "static/js/main.06202808.chunk.js"
   ]
 }
