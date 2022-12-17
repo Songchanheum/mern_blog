@@ -33,11 +33,11 @@ function Sidebar() {
             }
           }}
         ></IconButton>
-        <NavItem navSize={navSize} icon={FiHome} title="대시보드" path="/blog_temp/dashboard" />
-        <NavItem navSize={navSize} icon={FiBook} title="전체보기" path="/blog_temp/posts" />
+        <NavItem navSize={navSize} icon={FiHome} title="대시보드" path="/mern_blog/dashboard" />
+        <NavItem navSize={navSize} icon={FiBook} title="전체보기" path="/mern_blog/posts" />
         <NavItem navSize={navSize} icon={FiChevronsRight} title="카테고리별" description={categories.category.post} />
-        <NavItem navSize={navSize} icon={BiBaseball} title="야구" path="/blog_temp/baseball" />
-        <NavItem navSize={navSize} icon={FiSettings} title="설정" path="/blog_temp/setting" />
+        <NavItem navSize={navSize} icon={BiBaseball} title="야구" path="/mern_blog/baseball" />
+        <NavItem navSize={navSize} icon={FiSettings} title="설정" path="/mern_blog/setting" />
       </Flex>
     </Flex>
   );

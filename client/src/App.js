@@ -17,7 +17,7 @@ function App() {
         <Sidebar />
         <Box w="100%">
           <Header />
-          <BrowserRouter basename="/blog_temp">
+          <BrowserRouter basename="/mern_blog">
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/dashboard" component={Home} />
@@ -27,6 +27,7 @@ function App() {
               <Redirect to="/" />
             </Switch>
           </BrowserRouter>
+          F
         </Box>
       </Flex>
     </>

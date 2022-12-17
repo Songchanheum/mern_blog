@@ -30,7 +30,7 @@ function NavHoverBox({ icon, title, description }) {
             <Text>{description}</Text> */}
         {description.map(item => {
           return (
-            <Link href={'/blog_temp/posts/' + item}>
+            <Link href={'/mern_blog/posts/' + item}>
               <Text>{item}</Text>
             </Link>
           );

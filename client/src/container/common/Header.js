@@ -12,7 +12,7 @@ const Header = () => {
       <chakra.header bg={bg} w="full" px={5} py={1} shadow="md" mx="auto">
         <Flex align="center" justify="space-between" mx="auto" maxW="1420px">
           <Flex>
-            <chakra.a href={'/blog_temp'} title="Choc Home Page" display="flex" alignItems="center">
+            <chakra.a href={'/mern_blog'} title="Choc Home Page" display="flex" alignItems="center">
               <HStack>
                 <Text fontSize="3xl">⚾</Text>
                 <Text
