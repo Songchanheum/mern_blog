@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchSinglePost, deletePost } from '../redux/actions/post';
+import { fetchSinglePost, deletePost } from '../../redux/actions/post';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import EditPostForm from './EditPostForm';
-import Loader from './Loader';
+import EditPostForm from '../../components/EditPostForm';
+import Loader from '../common/Loader';
 import {
   Flex,
   Box,
