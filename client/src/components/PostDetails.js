@@ -2,22 +2,43 @@ import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSinglePost, deletePost } from '../redux/actions/post';
-import { useParams } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import EditPostForm from './EditPostForm';
 import Loader from './Loader';
-import { Flex, Box, Image, chakra, Spacer, Link, Button, Heading, Text, Textarea } from '@chakra-ui/react';
+import {
+  Flex,
+  Box,
+  Image,
+  chakra,
+  Spacer,
+  Link,
+  Button,
+  Heading,
+  Textarea,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+} from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import ResizeTextarea from 'react-textarea-autosize';
 
+import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
+import ReactMarkdown from 'react-markdown';
+
 const PostDetails = ({ match }) => {
-  const { id, category } = match.params;
+  const { id } = match.params;
   const history = useHistory();
   const dispatch = useDispatch();
   const currentPosts = useSelector(state => state.posts);
   const { currentPost, loading, error } = currentPosts;
   const [editMode, setEditMode] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const openEditMode = () => {
     setEditMode(true);
@@ -36,19 +57,32 @@ const PostDetails = ({ match }) => {
   }, [dispatch, id]);
 
   const removePost = () => {
-    try {
-      if (window.confirm(`Are you sure? You can't undo this action afterwards.`)) {
-        dispatch(deletePost(currentPost?._id));
-        toast.success('Blog successfully removed!');
-        setTimeout(() => {
-          history.push('/blog_temp/posts');
-        }, 500);
-      }
-    } catch (error) {
-      toast.error(error);
-    }
+    dispatch(deletePost(currentPost?._id));
+    toast.success('Blog successfully removed!');
+    setTimeout(() => {
+      onClose();
+      history.push('/posts');
+    }, 500);
   };
-
+  const newTheme = {
+    p: props => {
+      const { children } = props;
+      return (
+        <Textarea
+          mt={4}
+          fontSize="lg"
+          color={('gray.400', 'gray.300')}
+          isReadOnly="true"
+          variant="unstyled"
+          resize={'none'}
+          overflow="hidden"
+          as={ResizeTextarea}
+        >
+          {children}
+        </Textarea>
+      );
+    },
+  };
   return (
     <>
       {loading ? (
@@ -75,7 +109,6 @@ const PostDetails = ({ match }) => {
                   >
                     {currentPost?.subtitle}
                   </Heading>
-
                   <Box my={6}>
                     <Flex align="center">
                       <Flex align="center" justify="between">
@@ -101,12 +134,11 @@ const PostDetails = ({ match }) => {
                       <Button colorScheme="blue" mr={3} onClick={openEditMode}>
                         <EditIcon />
                       </Button>
-                      <Button onClick={removePost} colorScheme="red">
+                      <Button onClick={onOpen} colorScheme="red">
                         <DeleteIcon />
                       </Button>
                     </Flex>
                   </Box>
-
                   <figure style={{ marginBottom: '2rem' }}>
                     <Image
                       w="100%"
@@ -115,24 +147,34 @@ const PostDetails = ({ match }) => {
                       alt={currentPost?.tag}
                     />
                   </figure>
-                  <Textarea
-                    mt={4}
-                    fontSize="lg"
-                    color={('gray.400', 'gray.300')}
-                    isReadOnly="true"
-                    variant="unstyled"
-                    resize={'none'}
-                    overflow="hidden"
-                    as={ResizeTextarea}
-                  >
-                    {currentPost?.content.replace()}
-                  </Textarea>
+                  <ReactMarkdown
+                    components={ChakraUIRenderer(newTheme)}
+                    children={currentPost?.content.replace()}
+                    skipHtml
+                  />
                 </Box>
               </Box>
             </Flex>
           )}
         </div>
       )}
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>게시글 삭제</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>게시글을 삭제하시겠습니까?</ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              취소
+            </Button>
+            <Button variant="ghost" onClick={removePost}>
+              삭제
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   );
 };
