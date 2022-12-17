@@ -9,9 +9,7 @@ import { FormControl, FormLabel } from '@chakra-ui/form-control';
 import { Button } from '@chakra-ui/button';
 import { Input } from '@chakra-ui/input';
 
-
 const EditPostForm = ({ post, closeEditMode }) => {
-  
   const categories = useSelector(state => state.category);
   const [file, setFile] = useState(post?.image);
   const { register, errors, control, handleSubmit } = useForm();

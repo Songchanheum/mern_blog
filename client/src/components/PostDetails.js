@@ -9,10 +9,10 @@ import EditPostForm from './EditPostForm';
 import Loader from './Loader';
 import { Flex, Box, Image, chakra, Spacer, Link, Button, Heading, Text, Textarea } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
-import ResizeTextarea from "react-textarea-autosize";
+import ResizeTextarea from 'react-textarea-autosize';
 
-const PostDetails = () => {
-  const { id } = useParams();
+const PostDetails = ({ match }) => {
+  const { id, category } = match.params;
   const history = useHistory();
   const dispatch = useDispatch();
   const currentPosts = useSelector(state => state.posts);
@@ -32,7 +32,7 @@ const PostDetails = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchSinglePost(id));
+    if (id) dispatch(fetchSinglePost(id));
   }, [dispatch, id]);
 
   const removePost = () => {
@@ -41,7 +41,7 @@ const PostDetails = () => {
         dispatch(deletePost(currentPost?._id));
         toast.success('Blog successfully removed!');
         setTimeout(() => {
-          history.push('/posts');
+          history.push('/blog_temp/posts');
         }, 500);
       }
     } catch (error) {
@@ -114,11 +114,17 @@ const PostDetails = () => {
                       src={currentPost?.image || 'https://loremflickr.com/1280/720'}
                       alt={currentPost?.tag}
                     />
-                    <figcaption style={{ textAlign: 'center', color: '#afacac', fontSize: '0.9rem' }}>
-                      Photo by Lopez Robin on Unsplash
-                    </figcaption>
                   </figure>
-                  <Textarea mt={4} fontSize="lg" color={('gray.400', 'gray.300')} isReadOnly='true' variant='unstyled' resize={'none'} overflow="hidden" as={ResizeTextarea}>
+                  <Textarea
+                    mt={4}
+                    fontSize="lg"
+                    color={('gray.400', 'gray.300')}
+                    isReadOnly="true"
+                    variant="unstyled"
+                    resize={'none'}
+                    overflow="hidden"
+                    as={ResizeTextarea}
+                  >
                     {currentPost?.content.replace()}
                   </Textarea>
                 </Box>

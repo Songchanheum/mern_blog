@@ -21,7 +21,6 @@ import { FormControl, FormLabel } from '@chakra-ui/form-control';
 import { createPost } from '../redux/actions/post';
 
 const AddPostForm = ({ isOpen, onClose }) => {
-  
   const categories = useSelector(state => state.category);
   const [file, setFile] = useState(null);
 

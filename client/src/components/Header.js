@@ -14,21 +14,19 @@ const Header = () => {
       <chakra.header bg={bg} w="full" px={5} py={1} shadow="md" mx="auto">
         <Flex align="center" justify="space-between" mx="auto" maxW="1420px">
           <Flex>
-            <chakra.a href={'/'} title="Choc Home Page" display="flex" alignItems="center">
+            <chakra.a href={'/blog_temp'} title="Choc Home Page" display="flex" alignItems="center">
               <HStack>
-                <Text fontSize="3xl">
-                  ⚾
+                <Text fontSize="3xl">⚾</Text>
+                <Text
+                  m={2}
+                  bgGradient="linear(to-r, blue.300 0%, blue.200 50%, gray.100 100%)"
+                  bgClip="text"
+                  fontWeight={700}
+                  fontSize={'4xl'}
+                  fontFamily={'Gamja Flower'}
+                >
+                  SCH BLOG
                 </Text>
-              <Text 
-                m={2} 
-                bgGradient="linear(to-r, blue.300 0%, blue.200 50%, gray.100 100%)" 
-                bgClip="text" 
-                fontWeight={700} 
-                fontSize={"4xl"}
-                fontFamily={"Gamja Flower"}
-              >
-              SCH BLOG
-              </Text>
               </HStack>
             </chakra.a>
           </Flex>
