@@ -3,8 +3,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Post from './Post';
-import { fetchPosts } from '../redux/actions/post';
-import Loader from './Loader';
+import { fetchPosts } from '../../redux/actions/post';
+import Loader from '../common/Loader';
 import { useColorModeValue, Box, Wrap, Flex, Text, Icon, Stack } from '@chakra-ui/react';
 import { useParams } from 'react-router';
 import { FiBook } from 'react-icons/fi';

@@ -2,11 +2,11 @@ import './App.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter as BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import PostsList from './components/PostsList';
-import PostDetails from './components/PostDetails';
-import Header from './components/Header';
-import Home from './components/Home';
-import Sidebar from './components/Sidebar';
+import PostsList from './container/post/PostsList';
+import PostDetails from './container/post/PostDetails';
+import Header from './container/common/Header';
+import Sidebar from './container/common/Sidebar';
+import Home from './container/common/Home';
 import { Box, Flex } from '@chakra-ui/react';
 
 function App() {

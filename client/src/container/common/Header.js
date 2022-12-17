@@ -1,9 +1,7 @@
 import React from 'react';
 import { chakra, useColorModeValue, Flex, Button, Link, Text, Stack, HStack } from '@chakra-ui/react';
-import Logo from '../images/Logo';
-import AddPostForm from './AddPostForm';
+import AddPostForm from '../../components/form/AddPostForm';
 import { useDisclosure } from '@chakra-ui/hooks';
-import Sidebar from './Sidebar';
 
 const Header = () => {
   const bg = useColorModeValue('white', 'gray.800');

@@ -3,41 +3,53 @@ import FileBase64 from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useForm, Controller } from 'react-hook-form';
-import { updatePost } from '../redux/actions/post';
-import { Textarea, Box, Flex, Heading, Select } from '@chakra-ui/react';
-import { FormControl, FormLabel } from '@chakra-ui/form-control';
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Textarea,
+  Select,
+} from '@chakra-ui/react';
 import { Button } from '@chakra-ui/button';
 import { Input } from '@chakra-ui/input';
+import { FormControl, FormLabel } from '@chakra-ui/form-control';
 
-const EditPostForm = ({ post, closeEditMode }) => {
+import { createPost } from '../../redux/actions/post';
+
+const AddPostForm = ({ isOpen, onClose }) => {
   const categories = useSelector(state => state.category);
-  const [file, setFile] = useState(post?.image);
+  const [file, setFile] = useState(null);
+
   const { register, errors, control, handleSubmit } = useForm();
+
   const dispatch = useDispatch();
 
   const onSubmit = data => {
     try {
-      const updatedPost = {
-        _id: post._id,
-        ...data,
-        image: file,
-      };
-      dispatch(updatePost(post._id, updatedPost));
-      toast.success('Blog successfully updated!');
-      setFile(null);
-      closeEditMode();
+      dispatch(createPost({ ...data, image: file }));
+      toast.success('Blog successfully added!');
+      clearForm();
     } catch (error) {
       toast.error(error);
     }
   };
 
+  const clearForm = () => {
+    onClose();
+    setFile(null);
+  };
+
   return (
-    <Flex maxW="900px" px={5} mx="auto" align="center" justify="center" minH={'90vh'}>
-      <Box w="100%" px={10} py={5} bg={('white', 'gray.700')} borderRadius="lg" boxShadow="dark-lg">
-        <Box textAlign="center">
-          <Heading as="h2">Edit Post </Heading>
-        </Box>
-        <Box my={4} textAlign="left">
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>Add New Post</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody pb={6}>
           <form noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
             <FormControl isInvalid={errors.title} minH={'100px'}>
               <FormLabel>Title</FormLabel>
@@ -51,7 +63,6 @@ const EditPostForm = ({ post, closeEditMode }) => {
                     message: 'This field is required.',
                   },
                 })}
-                defaultValue={post?.title}
               />
               {errors.title && <p className="validation__error">{errors.title.message}</p>}
             </FormControl>
@@ -68,7 +79,6 @@ const EditPostForm = ({ post, closeEditMode }) => {
                     message: 'This field is required.',
                   },
                 })}
-                defaultValue={post?.subtitle}
               />
               {errors.subtitle && <p className="validation__error">{errors.subtitle.message}</p>}
             </FormControl>
@@ -85,7 +95,6 @@ const EditPostForm = ({ post, closeEditMode }) => {
                     message: 'This field is required.',
                   },
                 })}
-                defaultValue={post?.author}
               />
               {errors.author && <p className="validation__error">{errors.author.message}</p>}
             </FormControl>
@@ -104,10 +113,9 @@ const EditPostForm = ({ post, closeEditMode }) => {
                 }
                 name="tag"
                 control={control}
-                defaultValue={post?.tag}
+                defaultValue={categories.category.post[0]}
               />
             </FormControl>
-
             <FormControl isInvalid={errors.content} minH={'100px'}>
               <FormLabel>Content</FormLabel>
               <Textarea
@@ -124,7 +132,6 @@ const EditPostForm = ({ post, closeEditMode }) => {
                     value: 50,
                   },
                 })}
-                defaultValue={post?.content}
               />
               {errors.content && <p className="validation__error">{errors.content.message}</p>}
             </FormControl>
@@ -133,17 +140,17 @@ const EditPostForm = ({ post, closeEditMode }) => {
               <FileBase64 multiple={false} onDone={({ base64 }) => setFile(base64)} />
             </FormControl>
 
-            <Box mt={4} display="flex" alignItems="center" justifyContent="flex-end">
-              <Button colorScheme="blue" mr={3} type="submit">
-                Update
+            <ModalFooter pr={0}>
+              <Button colorScheme="blue" mr={3} onClick={() => handleSubmit(onSubmit)()}>
+                Save
               </Button>
-              <Button onClick={closeEditMode}>Cancel</Button>
-            </Box>
+              <Button onClick={onClose}>Cancel</Button>
+            </ModalFooter>
           </form>
-        </Box>
-      </Box>
-    </Flex>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
   );
 };
 
-export default EditPostForm;
+export default AddPostForm;
